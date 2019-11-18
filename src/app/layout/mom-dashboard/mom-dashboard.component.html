@@ -1,0 +1,105 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'MOM - Month on Month Revenue Forecast Dashboard'" [icon]="'fa-table'"></app-page-header>
+   
+    <div class="row">
+        <div class="col col-xl-12 col-lg-12">
+            <div class="card mb-3">
+                <div class="card-header">
+                    2020 - Liberty Mutual QE & A
+                </div>
+                <div class="card-body table-responsive">
+                    <table class="table table-striped" > 
+                        <thead id="revenueDashboardHead" class="thead-light">
+                            <tr>
+                              <th class="thead-light"></th>
+                              <th *ngFor="let header of headerRow" id="headerColumn-{{header}}">
+                                {{header}}
+                              </th>
+                            </tr>
+                          </thead>
+                        <tbody *ngIf="revenueDashboard" class="textSize">
+                            <tr *ngIf="revenueDashboard.baselineTotals">
+                                <th class="headerTextSize">Baseline</th>
+                                <td> {{ revenueDashboard.baselineTotals.januaryTotal | currency }} </td>
+                                <td> {{ revenueDashboard.baselineTotals.februaryTotal | currency }} </td>
+                                <td> {{ revenueDashboard.baselineTotals.marchTotal | currency }} </td>
+                                <td> {{ revenueDashboard.baselineTotals.aprilTotal | currency }} </td>
+                                <td> {{ revenueDashboard.baselineTotals.mayTotal | currency }} </td>
+                                <td> {{ revenueDashboard.baselineTotals.juneTotal | currency }} </td>
+                                <td> {{ revenueDashboard.baselineTotals.julyTotal | currency }} </td>
+                                <td> {{ revenueDashboard.baselineTotals.augustTotal | currency }} </td>
+                                <td> {{ revenueDashboard.baselineTotals.septemberTotal | currency }} </td>
+                                <td> {{ revenueDashboard.baselineTotals.octoberTotal | currency }} </td>
+                                <td> {{ revenueDashboard.baselineTotals.novemberTotal | currency }} </td>
+                                <td> {{ revenueDashboard.baselineTotals.decemberTotal | currency }} </td>
+                                <td class="table-success"><b> {{ revenueDashboard.baselineTotals.grandTotal| currency }}</b> </td>
+                            </tr>
+                            <tr *ngIf="revenueDashboard.mostlikelyTotals">
+                                <th class="headerTextSize">Most likely</th>
+                                <td> {{ revenueDashboard.mostlikelyTotals.januaryTotal | currency }} </td>
+                                <td> {{ revenueDashboard.mostlikelyTotals.februaryTotal | currency }} </td>
+                                <td> {{ revenueDashboard.mostlikelyTotals.marchTotal | currency }} </td>
+                                <td> {{ revenueDashboard.mostlikelyTotals.aprilTotal | currency }} </td>
+                                <td> {{ revenueDashboard.mostlikelyTotals.mayTotal | currency }} </td>
+                                <td> {{ revenueDashboard.mostlikelyTotals.juneTotal | currency }} </td>
+                                <td> {{ revenueDashboard.mostlikelyTotals.julyTotal | currency }} </td>
+                                <td> {{ revenueDashboard.mostlikelyTotals.augustTotal | currency }} </td>
+                                <td> {{ revenueDashboard.mostlikelyTotals.septemberTotal | currency }} </td>
+                                <td> {{ revenueDashboard.mostlikelyTotals.octoberTotal | currency }} </td>
+                                <td> {{ revenueDashboard.mostlikelyTotals.novemberTotal | currency }} </td>
+                                <td> {{ revenueDashboard.mostlikelyTotals.decemberTotal | currency }} </td>
+                                <td class="table-warning"> {{ revenueDashboard.mostlikelyTotals.grandTotal | currency }} </td>
+                            </tr>
+                            <tr *ngIf="revenueDashboard.upsideTotals">
+                                    <th class="headerTextSize">Upside</th>
+                                    <td> {{ revenueDashboard.upsideTotals.januaryTotal | currency }} </td>
+                                    <td> {{ revenueDashboard.upsideTotals.februaryTotal | currency }} </td>
+                                    <td> {{ revenueDashboard.upsideTotals.marchTotal | currency }} </td>
+                                    <td> {{ revenueDashboard.upsideTotals.aprilTotal | currency }} </td>
+                                    <td> {{ revenueDashboard.upsideTotals.mayTotal | currency }} </td>
+                                    <td> {{ revenueDashboard.upsideTotals.juneTotal | currency }} </td>
+                                    <td> {{ revenueDashboard.upsideTotals.julyTotal | currency }} </td>
+                                    <td> {{ revenueDashboard.upsideTotals.augustTotal | currency }} </td>
+                                    <td> {{ revenueDashboard.upsideTotals.septemberTotal | currency }} </td>
+                                    <td> {{ revenueDashboard.upsideTotals.octoberTotal | currency }} </td>
+                                    <td> {{ revenueDashboard.upsideTotals.novemberTotal | currency }} </td>
+                                    <td> {{ revenueDashboard.upsideTotals.decemberTotal | currency }} </td>
+                                    <td class="table-info"> {{ revenueDashboard.upsideTotals.grandTotal | currency }} </td>
+                                </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>      
+    <div class="row">
+            <div class="col col-sm-6">
+                <div class="card mb-3">
+                        <div class="card-header">
+                                Monthly Revenue Trend
+                            </div>
+                            <div class="card-body">
+                                <canvas baseChart height="130" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                                </canvas>
+                            </div>
+                  
+                </div>
+            </div>
+            <div class="col col-sm-6">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        Annual Revenue Buckets
+                    </div>
+                    <div class="card-body">
+                        <canvas baseChart height="130px" [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+    </div> 
+</div>
+
+                    
+                     
+
+          
